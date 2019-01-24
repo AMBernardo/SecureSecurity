@@ -1,0 +1,43 @@
+.container{
+    background-color:#e8e8e8;
+    margin-top: 2rem;
+    
+    
+}
+.head1{
+    margin-top: 4rem;
+   font-size: 60px;
+}
+.head2{
+    margin-top: 3rem;
+    padding-left: 2.5rem;
+}
+.head3{
+    margin-top: 3rem;
+    padding-right: .5rem; 
+}
+.first-btn{
+    margin-top: 1rem;
+}
+.first-col{
+    background-color:#2b3159;
+    height: 350px;
+    color: white;
+}
+
+.sec-col{
+    background-color: #e5e5e5;
+    height: 200px;
+}
+.third-col{
+    background-color: #e5e5e5;
+    height: 200px;
+}
+
+body{
+    background-color: white;
+    font-family: 'Raleway', sans-serif;
+}
+p{
+    font-size: 18px;
+}
