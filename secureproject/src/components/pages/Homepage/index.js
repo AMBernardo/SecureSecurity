@@ -6,9 +6,11 @@ function Profile() {
      <div className="row">
       <div className="col-2 side-col">
       <h4 className="brand">Secure Security</h4>
-      <button type="button" class="btn btn-outline-warning btn1">Warning</button>
-      <button type="button" class="btn btn-outline-warning btn2">Warning</button>
-      <button type="button" class="btn btn-outline-warning btn3">Warning</button>
+      <div className="button-bundle">
+      <button type="button" class="btn btn-outline-warning btn1">Home</button>
+      <button type="button" class="btn btn-outline-warning btn2">Profile</button>
+      <button type="button" class="btn btn-outline-warning btn3">Settings</button>
+      </div>
       </div>
       <div className="col-10 top-col">
 

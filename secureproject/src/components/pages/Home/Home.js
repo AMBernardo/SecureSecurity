@@ -11,9 +11,14 @@ function Home() {
     <p>Where We Keep You Safe</p>
     </div>
 
-   <Link to="/login-signup" className={window.location.pathname === "/login-signup"} >
+   <Link to="/login" className={window.location.pathname === "/login"} >
    <button className="btn btn-warning first-btn"> 
-   Login/SignUp
+   Login
+   </button> 
+   </Link>
+   <Link to="/signup" className={window.location.pathname === "/signup"} >
+   <button className="btn btn-warning sec-btn"> 
+   SignUP
    </button> 
    </Link>
     </div>
@@ -28,6 +33,11 @@ function Home() {
    <h1>Keep your money safe.</h1>
    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab odit ut ipsam magni veritatis tenetur odio eaque earum fugiat dolores nam culpa dolorum, nisi, officiis ea impedit mollitia deleniti quas?</p>
    </div>
+   </div>
+
+   <div className="col-12 fourth-col">
+    <h2 className="text-center">What makes Secure Security secure?</h2>
+    <p className="fourth-p">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam nulla neque commodi eius architecto, minima cumque nobis, iste aspernatur laborum earum molestiae sit deserunt harum, qui doloremque illo accusamus quae.</p>
    </div>
     </div>
     </div>

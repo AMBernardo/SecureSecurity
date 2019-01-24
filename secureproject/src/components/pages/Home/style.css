@@ -4,6 +4,10 @@
     
     
 }
+.fourth-p{
+    margin-top: 2rem;
+    margin-left: 2.8rem;
+}
 .head1{
     margin-top: 4rem;
    font-size: 60px;
@@ -15,9 +19,16 @@
 .head3{
     margin-top: 3rem;
     padding-right: .5rem; 
+    
 }
 .first-btn{
-    margin-top: 1rem;
+    margin-top: 2rem;
+    width: 100px;
+}
+.sec-btn{
+    margin-top: 2rem;
+    margin-left: 1rem;
+    width: 100px;
 }
 .first-col{
     background-color:#2b3159;
@@ -32,6 +43,12 @@
 .third-col{
     background-color: #e5e5e5;
     height: 200px;
+}
+
+.fourth-col{
+    height: 200px;
+    background-color: #ffc107;
+    color: black;
 }
 
 body{

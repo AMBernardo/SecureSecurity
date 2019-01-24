@@ -18,16 +18,18 @@
     width: 210px;
 }
 .btn2{
-    margin-top: 1rem;
+    margin-top: 2rem;
     margin-left: .5rem;
     width: 210px;
 }
 .btn3{
-    margin-top: 1rem;
+    margin-top: 2rem;
     margin-left: .5rem;
     width: 210px;
 }
-
+.button-bundle{
+    margin-top: 13rem;
+}
 body{
     background-color:#e5e5e5;
 }
