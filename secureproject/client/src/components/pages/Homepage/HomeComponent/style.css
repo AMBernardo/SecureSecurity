@@ -5,8 +5,10 @@
     
 }
 .top-col{
-    height: 54px;
-    background-color: #2b3159;
+    margin-top: 4rem;
+    margin-left: 3rem;
+    height: auto;
+    background-color: darkgrey;
 }
 .brand{
     margin-top: 1rem;
@@ -27,9 +29,18 @@
     margin-left: .5rem;
     width: 210px;
 }
+.btn4{
+    margin-top: 20rem;
+    margin-left: 10rem;
+    width: 110px;
+}
 .button-bundle{
     margin-top: 13rem;
 }
 body{
     background-color:#e5e5e5;
+}
+.show-employee{
+    height: 1200px;
+    background-color: aqua;
 }

@@ -1,31 +1,86 @@
-import React from "react";
-import { Link, Route } from "react-router-dom";
-import Learn from "./Learn";
+import React, {Component} from "react";
+import { Link } from "react-router-dom";
+import "./style.css";
+import API from "../../../utils/API";
+class SignUp extends Component {
 
-function Contact(props) {
+  state = {
+    companyEmail: "",
+    companyName: "",
+    companyPassword:  ""
+  }
+
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+    
+  };
+
+  handleFormSubmit = event => {
+    event.preventDefault()
+    console.log(this.state.companyName) 
+    console.log(this.state.companyEmail) 
+    console.log( this.state.companyPassword) 
+     
+   API.saveUser({
+    companyName: this.state.companyName,
+    companyEmail: this.state.companyEmail,
+    companyPassword: this.state.companyPassword
+   })
+   .then(res => console.log((`${this.state.name} ${this.state.email} ${this.state.password} `)))
+   .catch(err => console.log(err));
+   
+  };
+
+
+
+
+  render(){
   return (
-    <div>
-      <h1>Contact Page</h1>
-      <p>
-        Integer cursus bibendum sem non pretium. Vestibulum in aliquet sem, quis molestie urna.
-        Aliquam semper ultrices varius. Aliquam faucibus sit amet magna a ultrices. Aenean
-        pellentesque placerat lacus imperdiet efficitur. In felis nisl, luctus non ante euismod,
-        tincidunt bibendum mi. In a molestie nisl, eu sodales diam. Nam tincidunt lacus quis magna
-        posuere, eget tristique dui dapibus. Maecenas fermentum elementum faucibus. Quisque nec
-        metus vestibulum, egestas massa eu, sollicitudin ipsum. Nulla facilisi. Sed ut erat ligula.
-        Nam tincidunt nunc in nibh dictum ullamcorper. Class aptent taciti sociosqu ad litora
-        torquent per conubia nostra, per inceptos himenaeos. Etiam ornare rutrum felis at rhoncus.
-        Etiam vel condimentum magna, quis tempor nulla.
-      </p>
-      <Link to={`${props.match.url}/learn`} role="button" className="btn btn-link">
-        Learn More
-      </Link>{" "}
-      <Link to="/signup" role="button" className="btn btn-link">
-        Learn Less
-      </Link>
-      <Route exact path={`${props.match.url}/learn`} component={Learn} />
+    <div className="container shadow-lg p-3 mb-5 signup-contanier">
+      <div className="row">
+        <div className="col-6">
+      <form>
+        <div className="form-group ">
+             <label >Full Company Name</label>
+          <input 
+          type="name" 
+          className="form-control" 
+          id="CompanyName" 
+          onChange={this.handleInputChange}
+          value={ this.state.companyName} 
+          name="companyName" />
+             <label>Company Register Email</label>
+          <input 
+          type="email" 
+          className="form-control" 
+          id="comanyEmail" 
+          onChange={this.handleInputChange}
+          value={ this.state.companyEmail} 
+          name="companyEmail" />
+            <label >Password</label>
+          <input 
+          type="password" 
+          className="form-control" 
+          id="companyPassword" 
+          onChange={this.handleInputChange}
+          value={ this.state.companyPassword} 
+          name="companyPassword" />
+         
+         <button type="button" className="btn btn-warning" onClick={this.handleFormSubmit}>Submit</button>
+        </div>
+
+
+  
+        </form>
+       </div>
+      </div>
     </div>
   );
+  }
 }
 
-export default Contact;
+export default SignUp;
