@@ -13,6 +13,8 @@ function Nav(props) {
       </Link>
       <button type="button" class="btn btn-outline-warning btn2">Profile</button>
       <button type="button" class="btn btn-outline-warning btn3">Settings</button>
+
+      <button type="button" class="btn btn-outline-warning btn3">Logout</button>
       </div>
       </div>
       <div className="col-10 top-col">

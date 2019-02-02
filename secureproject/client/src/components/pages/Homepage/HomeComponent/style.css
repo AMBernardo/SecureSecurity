@@ -1,8 +1,8 @@
 .side-col{
     background-color: #2b3159;
     color: white;
-    height: 731px;
-    
+    height: auto;
+    min-height: 731px
 }
 .top-col{
     margin-top: 4rem;
@@ -15,7 +15,7 @@
     margin-left: 1.5rem;
 }
 .btn1{
-    margin-top: 3rem;
+    margin-top: -0rem;
     margin-left: .5rem;
     width: 210px;
 }
@@ -40,7 +40,17 @@
 body{
     background-color:#e5e5e5;
 }
-.show-employee{
-    height: 1200px;
-    background-color: aqua;
+.card-header {
+    background-color: #2b3159;
+    color: white
+}
+.card-body{
+    color: white;
+}
+.employee-text{
+    margin-bottom: 1.5rem;
+    height: 34px;
+}
+.card:hover{
+    transform: scale(1.1);
 }

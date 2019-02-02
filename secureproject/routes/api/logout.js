@@ -3,7 +3,7 @@ const signupController = require("../../controllers/signinController");
 
 // Matches with "/api/books"
 router.route("/")
-  .post(signupController.userSignin)
+  .get(signupController.logout)
   
 
 

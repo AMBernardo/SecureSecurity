@@ -1,12 +1,10 @@
 const router = require("express").Router();
-const signupController = require("../../controllers/signinController");
+const signinController = require("../../controllers/signinController");
 
 // Matches with "/api/books"
 router.route("/")
-  .post(signupController.userSignin)
+
+  .get(signinController.verify)
   
-
-
-
 
 module.exports = router;

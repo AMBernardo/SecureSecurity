@@ -10,7 +10,7 @@ const employeeSchema = new Schema({
 
 
 employeeSchema.associate = function(models) {
-  employeeSchema.belongsTo(models.Employer.Employee, {
+  employeeSchema.belongsTo(models.Employer.employee, {
     foreignKey: {
       allowNull:false
     }

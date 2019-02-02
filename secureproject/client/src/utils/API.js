@@ -17,5 +17,11 @@ export default {
   saveEmployee: function(employeeData) {
     return axios.post("/api/employee", employeeData);
   },
+  saveUser: function(employeeData) {
+    return axios.post("/api/account/signup", employeeData);
+  },
+  signIN: function(employeeData) {
+    return axios.post("/api/account/signin", employeeData);
+  },
   
 };

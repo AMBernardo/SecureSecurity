@@ -1,4 +1,5 @@
 const express = require("express");
+const http = require('http');
 const mongoose = require("mongoose");
 const path = require("path");
 const routes = require("./routes");
@@ -15,6 +16,13 @@ if (process.env.NODE_ENV === "production") {
 
 // Define API routes here
 app.use(routes);
+
+
+
+//twillo
+http.createServer(app).listen(1337, () => {
+  console.log('Express server listening on port 1337');
+});
 
 // Send every other request to the React app
 mongoose.connect(

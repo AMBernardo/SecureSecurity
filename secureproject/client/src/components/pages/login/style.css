@@ -1,9 +1,33 @@
-.container2{
-    margin-top: 9rem;
-    height: 320px;
+.signup-contanier{
+    margin-top: 11rem;
+    height: auto;
     background-color: #2b3159;
     color: white;
 }
-.lable{
-    margin-top: 5rem;
+.signin-btn{
+    margin-top: 2rem;
+}
+.employee-cards{
+    margin-top: 1rem;
+    margin-left: 4rem;
+}
+
+.add-employee{
+    background-color: #2b3159;
+    margin-top: 3.9rem;
+    margin-left: 10rem;
+    height: 285px;
+}
+.add-employee:hover{
+    transform: scale(1.1);
+}
+.add-employee-form{
+    margin-top: 1rem;
+}
+.name-control{
+    margin-bottom: 1rem;
+}
+.employee-header{
+    color: white;
+    margin-top: .2rem;
 }
