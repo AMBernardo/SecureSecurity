@@ -16,10 +16,7 @@ const UserSchema = new Schema({
       type: String,
       default: ''
   },
-  employees: {
-    type: Schema.Types.ObjectId,
-    ref: "Employee"
-  },
+
   isDeleted : {
       type: Boolean,
       default: false

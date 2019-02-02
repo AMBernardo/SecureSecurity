@@ -116,7 +116,6 @@ class SignUp extends Component {
         <div className="container shadow-lg p-3 mb-5 signup-contanier">
         <div className="row">
           <div className="col-6">
-          
         <form>
           <div className="form-group ">
                <label >Full Company Name</label>

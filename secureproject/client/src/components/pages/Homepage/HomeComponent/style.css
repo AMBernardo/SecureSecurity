@@ -54,3 +54,10 @@ body{
 .card:hover{
     transform: scale(1.1);
 }
+.search-employee{
+    color: white;
+    margin-top: 12rem;
+    margin-left: 15rem;
+    height: 300px;
+    background-color: #2E2E2E;
+}
