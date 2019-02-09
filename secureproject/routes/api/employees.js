@@ -3,9 +3,12 @@ const employeeController = require("../../controllers/employeeController");
 
 // Matches with "/api/books"
 router.route("/")
-  .get(employeeController.findAll)
   .post(employeeController.create);
- 
+ // api/employee/:Usertoken/:Usertoken
+router.route("/:UserToken")
+  .get(employeeController.find)
+  
+
 
 // Matches with "/api/books/:id"
 router

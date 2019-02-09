@@ -1,5 +1,6 @@
 const user = require("../models/user");
 const UserSession = require("../models/userSession");
+
 // const voice = require("./callController");
 // const accountSid = 'ACe6c2d33e529cf6715b7715f2d8096e64';
 // const authToken = 'f958ca65e79228d835bb5a38f6301bbb';
@@ -89,6 +90,7 @@ module.exports = {
             password
         } = body;
         let {
+            ID,
             email
         } = body;
 
@@ -109,6 +111,7 @@ module.exports = {
         email = email.toLowerCase();
 
         user.find({
+           
             email: email
         }, (err, users) => {
             if(err) {
@@ -131,6 +134,7 @@ module.exports = {
                 });
             }
             const userSession = new UserSession();
+          
             userSession.userId = user._id;
             userSession.save((err, doc) => {
                 if(err) {
@@ -142,17 +146,23 @@ module.exports = {
                 return res.send({
                     success: true,
                     message:'Valid Sign in',
-                    token: doc._id
+                    token: doc._id,
+                    Usertoken:user._id
                 })
             })
         })
     },
+   
+
+
     verify: function (req, res) {
         //get token 
         const {query} = req;
         const {token} = query;
+      
+      
         //verify token is one of the kind
-
+       
         UserSession.find({
             _id: token,
             isDeleted: false
@@ -172,6 +182,7 @@ module.exports = {
                 return res.send({
                     success: true,
                     message: 'Good'
+                    
                 })
             }
         })

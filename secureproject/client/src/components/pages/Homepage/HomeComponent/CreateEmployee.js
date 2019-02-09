@@ -1,24 +1,40 @@
 import React, { Component } from 'react';
-// import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import API from '../../../../utils/API';
 import { getFromStorage, setInStorage } from '../../../../utils/storage';
 import './style.css';
+import SVGIcon from '../../../icons/flag.svg';
+import { Tooltip } from 'reactstrap';
+import FalseEntry  from './FalseEntry';
+
 
 class CreateEmployee extends Component {
-	state = {
-		Employee: '',
-		fullname: '',
-		dob: '',
-		gender: '',
-		token: '',
-		falseEntry: false,
-		showEmployees: false,
-		show: false
-	};
-
-	// When the component mounts, Loads Employees
+	constructor(props) {
+		super(props);
+		this.toggle = this.toggle.bind(this);
+		this.state = {
+			tooltipOpen: false,
+			Employee: '',
+			fullname: '',
+			dob: '',
+			gender: '',
+			token: '',
+      falseEntry: false,
+      FlagForm: false,
+      UserToken: ""
+		};
+	}
+//For Tooltip For Flag......
+	toggle() {
+		this.setState({
+			tooltipOpen: !this.state.tooltipOpen
+		});
+	}
+  // When the component mounts, Loads Employees........ 
+  //Verifies if they have a token and  if they dont it will redirect them out of the page...
 	componentDidMount() {
-		this.loadEmployees();
+    //loads Employees from DB
+    this.loadEmployees();
 		const obj = getFromStorage('the_main_app');
 		if (obj && obj.token) {
 			const { token } = obj;
@@ -31,14 +47,17 @@ class CreateEmployee extends Component {
 				}
 			});
 		} else {
+      //false entry renders a diffrent page if they were loged in 
 			this.setState({
 				falseEntry: true
-			});
+      });
+      //redirects them to the login page in 3sec
 			setTimeout(() => {
 				window.location.assign('http://localhost:3000/login');
 			}, 3000);
 		}
-	}
+  }
+  //LogOut Function to log the user out......
 	logout() {
 		const obj = getFromStorage('the_main_app');
 		if (obj && obj.token) {
@@ -48,126 +67,125 @@ class CreateEmployee extends Component {
 				if (json.success) {
 					this.setState({
 						token: ''
-					});
-					setInStorage('the_main_app', { token: this.state.token });
+          });
+          //set the blank UserSession token into the local storage
+          setInStorage('the_main_app', { token: this.state.token });
+          setInStorage('SecureSecruity',  {Usertoken: '' });
+          //redirct them to the home page
 					window.location.assign('http://localhost:3000');
 				}
 			});
 		}
-	}
+  }
+  //Load the employees from the DB.......
 	loadEmployees = () => {
-		API.getEmployees()
-			.then((res) =>
+    //API call to grab Employees form DB
+    const TheUser = getFromStorage('SecureSecruity')
+    
+      const {UserToken} = TheUser
+      console.log(UserToken)
+    
+    API.getEmployees(UserToken)
+      .then((res) => {
+        console.log(res)
 				this.setState({
 					Employee: res.data,
 					fullname: '',
 					dob: '',
-					gneder: '',
-					showEmployees: true
+					gender: '',
 				})
+      }
 			)
 			.catch((err) => console.log(err));
 	};
-
-
+//For forms.......
 	handleInputChange = (event) => {
 		const { name, value } = event.target;
 		this.setState({
 			[name]: value
 		});
 	};
-
+//Saves Employee that was added
 	handleFormSubmit = (event) => {
 		event.preventDefault();
-		console.log(this.state.fullname);
-		console.log(this.state.dob);
-		console.log(this.state.gender);
-
+    const TheUser = getFromStorage('SecureSecruity')
+    
+      const {UserToken} = TheUser
+      console.log(UserToken)
+      
+//API call to save the employee to the DB
+  console.log(UserToken)
 		API.saveEmployee({
 			name: this.state.fullname,
 			dob: this.state.dob,
-			gender: this.state.gender,
+      gender: this.state.gender,
+      UserToken: UserToken
 		})
-      .then((res) => this.loadEmployees())
-      
+			.then((res) => this.loadEmployees())
 			.catch((err) => console.log(err));
 	};
-
+//Broken need to fix
 	handleEmployeeDelete = (id) => {
 		API.deleteEmployee(id).then((res) => this.loadEmployees());
-	};
+  };
+  FlagFormClick = () => {
+    this.setState({
+      FlagForm: true
+    })
+    console.log(this.state.FlagForm)
+  }
 
+
+  //render the whole page
 	render() {
-		let employeeModal;
-		if (this.state.showEmployees === false) {
-      return (
-        <div className="contanier">
-          <div className="row">
-            <div className="col-2 side-col">
-              {employeeModal}
-              <h4 className="brand">Secure Security</h4>
-  
-              <div className="button-bundle">
-                <button type="button" className="btn btn-outline-warning btn1">
-                  Home
-                </button>
-                <button type="button" className="btn btn-outline-warning btn2">
-                  Profile
-                </button>
-                <button type="button" className="btn btn-outline-warning btn3">
-                  Settings
-                </button>
-  
-                <button
-                  type="button"
-                  className="btn btn-outline-warning btn3"
-                  onClick={() => this.logout()}
-                >
-                  Logout
-                </button>
-              </div>
-            </div>
-              
-                <div className="col-6 search-employee shadow-lg p-3 mb-5">
-                  <h2>Employee</h2>
-                  <button onClick={this.setState({showEmployees:true})}>X</button>
-                  
-                </div>
-             </div>
-            </div>
-         
-      );
-		}
+    if(this.state.FlagForm === true) {
+      
+    }
+
 
 		if (this.state.falseEntry === true) {
 			return (
-				<div>
-					<h1>You MUSt be logged In to Veiw this page</h1>
-					<p>redircting.......</p>
-				</div>
+        //Renders Diffrent page if they are not logged in
+				<FalseEntry></FalseEntry>
 			);
-		}
+    }
+    console.log(this.state.map)
 		return (
 			<div className="contanier">
+      
 				<div className="row">
 					<div className="col-2 side-col">
-						{employeeModal}
-						<h4 className="brand">Secure Security</h4>
-              
+						<h4 className="brand border-bottom border-warning">Secure Security</h4>
+						<div className="form-group Employee-Search">
+							<h5 className="Find-employee-search border-bottom border-warning">FIND AN EMPLOYEE</h5>
+							<input
+								className="form-control Employee-name-control"
+								value={this.state.fullname}
+								onChange={this.handleInputChange}
+								name="fullname"
+								placeholder="First and Last "
+							/>
+							<input
+								className="form-control Employee-name-control"
+								value={this.state.fullname}
+								onChange={this.handleInputChange}
+								name="fullname"
+								placeholder="First and Last "
+							/>
+							<input
+								className="form-control Employee-name-control"
+								value={this.state.fullname}
+								onChange={this.handleInputChange}
+								name="fullname"
+								placeholder="First and Last "
+							/>
 
-
-
+							<button type="button" className="btn btn-warning btn1">
+								{' '}
+								Submit
+							</button>
+						</div>
 						<div className="button-bundle">
-							<button type="button" className="btn btn-outline-warning btn1">
-								Home
-							</button>
-							<button type="button" className="btn btn-outline-warning btn2">
-								Profile
-							</button>
-							<button type="button" className="btn btn-outline-warning btn3">
-								Settings
-							</button>
-
 							<button
 								type="button"
 								className="btn btn-outline-warning btn3"
@@ -184,30 +202,48 @@ class CreateEmployee extends Component {
 							<div>
 								{this.state.Employee.map((individual) => {
 									return (
-										<div
-											className="card card-space shadow p-1 mb-4 bg-dark rounded"
-											key={individual._id}
-										>
-											<div className="card-header">
-												<h5> {individual.name}</h5>
-											</div>
+										<div className="card Employee-cards" key={individual._id}>
 											<div className="card-body">
 												<div className="row">
 													<div className="col-6">
-														<h6>DOB: {individual.dob}</h6>
+														<div className="card-title">
+															<h5> {individual.name}</h5>
+														</div>
 													</div>
-													<div className="col-6">
-														<h6>Gender: {individual.gender}</h6>
+													<div className="col-4">
+														<h5 className="red-text">NO FLAGS</h5>
 													</div>
-													<div className="col-12">
-														<h6>Header</h6>
-														<p>
-															Lorem ipsum dolor sit amet consectetur, adipisicing elit. At
-															ratione, voluptas sapiente odio nam illum asperiores aliquid
-															reprehenderit quas possimus! Nisi optio provident labore
-															commodi! Excepturi odit necessitatibus totam debitis!
-														</p>
+													<div className="col-2">
+														<div>
+                            
+															<img
+																src={SVGIcon}
+																alt="Flag"
+																className="Flag-icon"
+																width="20px"
+                                id="TooltipExample"
+                                
+															/>
+															<Tooltip
+																placement="right"
+																isOpen={this.state.tooltipOpen}
+																target="TooltipExample"
+																toggle={this.toggle}
+															>
+																Red Flag This Employee.
+															</Tooltip>
+														</div>
 													</div>
+													<div className="col-12 employee-content">
+														<div>
+															<ul className="list-group  rounded">
+                                <li className="list-group-item">
+                                  <p>this Employee stole $20</p>
+                                </li>
+                              </ul>
+														</div>
+													</div>
+													<div className="col-6 employee-content" />
 												</div>
 											</div>
 										</div>
@@ -251,13 +287,14 @@ class CreateEmployee extends Component {
 							<button
 								type="button"
 								className="btn btn-outline-warning "
-                onClick={this.handleFormSubmit }
+								onClick={this.handleFormSubmit}
 								disabled={!(this.state.fullname && this.state.dob && this.state.gender)}
 							>
 								Submit
 							</button>
 						</div>
 					</div>
+					<div className="col-4 Employee-Searched-Card" />
 				</div>
 			</div>
 		);

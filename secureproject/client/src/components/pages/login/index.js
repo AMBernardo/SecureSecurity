@@ -10,12 +10,14 @@ class SignUp extends Component {
   state = {
     isLoading: true,
     token: "",
+    UserToken: "",
     signupError: "",
     companyEmail: "",
     companyName: "",
     companyPassword:  "",
     message: "",
-    errorMessages: false
+    errorMessages: false,
+    UserToken: ""
   }
 
   componentDidMount() {
@@ -65,20 +67,22 @@ class SignUp extends Component {
      console.log(json)
       if(json.data.success) {
         setInStorage('the_main_app', {token: json.data.token})
-        
-        window.location.assign('http://localhost:3000/homepage/profile');
-      } if (json.data.message) {
-        
+        setInStorage('SecureSecruity', {UserToken: json.data.Usertoken})
+        window.location.assign('homepage/profile');
+      } if (json.data) {
         this.setState({
           message: json.data.message,
-          errorMessages: true
+          errorMessages: true,
+          UserToken: json.data.Usertoken
         })
         console.log(`message: ${this.state.message}`)
+        console.log(` ${this.state.UserToken}`)
       } else {
         console.log('ha')
       }
    })
    .catch(err => console.log(err));
+
   };
   
 

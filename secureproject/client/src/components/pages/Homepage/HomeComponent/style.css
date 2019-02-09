@@ -14,25 +14,22 @@
     margin-top: 1rem;
     margin-left: 1.5rem;
 }
+.brand:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: 0.5s;
+    margin-top: 1rem;
+    margin-left: 1.5rem;
+}
 .btn1{
-    margin-top: -0rem;
-    margin-left: .5rem;
-    width: 210px;
+    margin-top: 1rem;
+    width: 200px;
 }
-.btn2{
-    margin-top: 2rem;
-    margin-left: .5rem;
-    width: 210px;
-}
+
 .btn3{
-    margin-top: 2rem;
+    margin-top: -10rem;
     margin-left: .5rem;
     width: 210px;
-}
-.btn4{
-    margin-top: 20rem;
-    margin-left: 10rem;
-    width: 110px;
 }
 .button-bundle{
     margin-top: 13rem;
@@ -40,19 +37,9 @@
 body{
     background-color:#e5e5e5;
 }
-.card-header {
-    background-color: #2b3159;
-    color: white
-}
-.card-body{
-    color: white;
-}
 .employee-text{
     margin-bottom: 1.5rem;
     height: 34px;
-}
-.card:hover{
-    transform: scale(1.1);
 }
 .search-employee{
     color: white;
@@ -60,4 +47,94 @@ body{
     margin-left: 15rem;
     height: 300px;
     background-color: #2E2E2E;
+}
+.red-text{
+    color: red;
+}
+.Flag-icon:hover{
+    transform: scale(2);
+    cursor: pointer;
+}
+.employee-content {
+    margin-top: auto;
+    opacity: 0;
+    transition: .5s;
+}
+.employee-content:hover {
+    opacity: 1;
+}
+.flag-form{
+    height: 520px;
+    margin-top: 7rem;
+    margin-left: 14rem;
+    background-color: #2E2E2E;
+}
+.flag-form-header{
+    height: 40px;
+    background-color: white;
+}
+.Employee-cards{
+    height: 63px;
+    width: auto;
+    margin-left: 2rem;
+    transition: 1s;
+  
+}
+.Employee-cards:hover{
+    height: auto;
+    width: auto;
+    margin-left: 2rem;
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+
+.add-employee{
+    background-color: #2b3159;
+    margin-top: 3.9rem;
+    margin-left: 10rem;
+    height: 285px;
+}
+.add-employee:hover{
+    transform: scale(1.1);
+}
+.add-employee-form{
+    margin-top: 1rem;
+}
+.name-control{
+    margin-bottom: 1rem;
+}
+.employee-header{
+    color: white;
+    margin-top: .2rem;
+}
+.Employee-Search{
+    margin-left: 1rem;
+    margin-top: 3rem;
+}
+.border-bottom{
+    width: auto;
+    margin-right: 1rem;
+}
+.Find-employee-search{
+  font-size: 18px;
+  margin-left: .5rem;
+  
+}
+.form-control{
+    margin-top: .5rem;
+}
+.form-control:hover{
+    transform: scale(1.1);
+}
+.Employee-Searched-Card{
+    margin-left: 53rem;
+    margin-top: -20rem;
+    height: 300px;
+    background-color: white;
+    transition: 1s;
+}
+.Employee-Searched-Card:hover{
+    transform: scale(2.1);
+    margin-left: 35rem;
+    margin-top: -32rem;
 }

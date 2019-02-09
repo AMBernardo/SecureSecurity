@@ -2,12 +2,12 @@ import axios from "axios";
 
 export default {
   // Gets all books
-  getEmployees: function() {
-    return axios.get("/api/employee");
+  getEmployees: function(UserToken) {
+    return axios.get(`/api/employee/ ${UserToken}`);
   },
   // Gets the book with the given id
-  getEmployee: function(id) {
-    return axios.get("/api/employee/" + id);
+  getEmployee: function() {
+    return axios.get("/api/employee/" );
   },
   // Deletes the book with the given id
   deleteEmployee: function(id) {
@@ -23,5 +23,6 @@ export default {
   signIN: function(employeeData) {
     return axios.post("/api/account/signin", employeeData);
   },
+
   
 };

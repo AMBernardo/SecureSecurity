@@ -6,7 +6,8 @@ SALT_WORK_FACTOR = 10;
 const UserSchema = new Schema({
   companyName : {
       type: String,
-      default: ''
+      default: '',
+      ref: '_id'
   },
   email : {
       type: String,
@@ -16,7 +17,10 @@ const UserSchema = new Schema({
       type: String,
       default: ''
   },
-
+  employees: {
+    type: Array,
+    ref: "Employee"
+  },
   isDeleted : {
       type: Boolean,
       default: false
@@ -24,8 +28,6 @@ const UserSchema = new Schema({
 
 });
 
-
- 
 UserSchema.methods.generateHash = function(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
   };
@@ -33,6 +35,9 @@ UserSchema.methods.generateHash = function(password) {
     return bcrypt.compareSync(password, this.password);
   };
 
+
+
+  
 const User = mongoose.model("User", UserSchema);
 
 module.exports = User;

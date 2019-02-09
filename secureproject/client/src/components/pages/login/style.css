@@ -7,27 +7,4 @@
 .signin-btn{
     margin-top: 2rem;
 }
-.employee-cards{
-    margin-top: 1rem;
-    margin-left: 4rem;
-}
 
-.add-employee{
-    background-color: #2b3159;
-    margin-top: 3.9rem;
-    margin-left: 10rem;
-    height: 285px;
-}
-.add-employee:hover{
-    transform: scale(1.1);
-}
-.add-employee-form{
-    margin-top: 1rem;
-}
-.name-control{
-    margin-bottom: 1rem;
-}
-.employee-header{
-    color: white;
-    margin-top: .2rem;
-}

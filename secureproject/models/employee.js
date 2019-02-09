@@ -7,18 +7,12 @@ const employeeSchema = new Schema({
   name: { type: String, required: true },
   dob: { type: String, required: true },
   gender: { type: String, required: true },
+  UserToken: {type: String}
 
 });
 
 
-employeeSchema.associate = function(models) {
-  employeeSchema.belongsTo(models.Employer.employee, {
-    foreignKey: {
-      allowNull:false
-    }
-  })
 
-}
 
 const Employee = mongoose.model("Employee", employeeSchema);
 
