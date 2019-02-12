@@ -19,10 +19,7 @@ app.use(routes);
 
 
 
-//twillo
-http.createServer(app).listen(1337, () => {
-  console.log('Express server listening on port 1337');
-});
+
 
 // Send every other request to the React app
 mongoose.connect(
