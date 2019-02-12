@@ -87,7 +87,7 @@ class SignUp extends Component {
         if(json.data.success) {
           setInStorage('the_main_app', {token: json.data.token})
           
-          window.location.assign('/homepage/profile');
+          window.location.assign('https://securesecurity.herokuapp.com/homepage/profile');
         } if (json.data.message) {
           
           this.setState({
