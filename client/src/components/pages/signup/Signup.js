@@ -87,7 +87,7 @@ class SignUp extends Component {
         if(json.data.success) {
           setInStorage('the_main_app', {token: json.data.token})
           
-          window.location.assign('http://localhost:3000/homepage/profile');
+          window.location.assign('/homepage/profile');
         } if (json.data.message) {
           
           this.setState({

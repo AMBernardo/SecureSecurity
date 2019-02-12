@@ -34,7 +34,7 @@ class SignUp extends Component {
               isLoading: false
             })
              window.location.reload();
-             window.location.assign('http://localhost:3000/homepage/profile');
+             window.location.assign('/homepage/profile');
           } 
         })
     } else {
