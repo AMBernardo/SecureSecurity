@@ -17,7 +17,7 @@ class SignUp extends Component {
     companyPassword:  "",
     message: "",
     errorMessages: false,
-    UserToken: ""
+    
   }
 
   componentDidMount() {

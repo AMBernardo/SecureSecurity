@@ -1,10 +1,10 @@
 const router = require("express").Router();
 const employeeController = require("../../controllers/employeeController");
 
-// Matches with "/api/books"
+// Matches with ""
 router.route("/")
   .post(employeeController.create);
- // api/employee/:Usertoken/:Usertoken
+ // employee/:Usertoken/
 router.route("/:UserToken")
   .get(employeeController.find)
   

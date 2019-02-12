@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import API from '../../../../utils/API';
 import { getFromStorage, setInStorage } from '../../../../utils/storage';
 import './style.css';
 import SVGIcon from '../../../icons/flag.svg';
 import { Tooltip } from 'reactstrap';
 import FalseEntry  from './FalseEntry';
+import FlagForm  from './FlagForm';
 
 
 class CreateEmployee extends Component {
@@ -53,7 +53,7 @@ class CreateEmployee extends Component {
       });
       //redirects them to the login page in 3sec
 			setTimeout(() => {
-				window.location.assign('http://localhost:3000/login');
+				window.location.assign('/login');
 			}, 3000);
 		}
   }
@@ -72,7 +72,7 @@ class CreateEmployee extends Component {
           setInStorage('the_main_app', { token: this.state.token });
           setInStorage('SecureSecruity',  {Usertoken: '' });
           //redirct them to the home page
-					window.location.assign('http://localhost:3000');
+					window.location.assign('/');
 				}
 			});
 		}
@@ -128,7 +128,7 @@ class CreateEmployee extends Component {
 	handleEmployeeDelete = (id) => {
 		API.deleteEmployee(id).then((res) => this.loadEmployees());
   };
-  FlagFormClick = () => {
+	FlagFormClick = () => {
     this.setState({
       FlagForm: true
     })
@@ -139,7 +139,9 @@ class CreateEmployee extends Component {
   //render the whole page
 	render() {
     if(this.state.FlagForm === true) {
-      
+			return(
+				<FlagForm></FlagForm>
+			)
     }
 
 
@@ -149,7 +151,7 @@ class CreateEmployee extends Component {
 				<FalseEntry></FalseEntry>
 			);
     }
-    console.log(this.state.map)
+ 
 		return (
 			<div className="contanier">
       
@@ -222,7 +224,7 @@ class CreateEmployee extends Component {
 																className="Flag-icon"
 																width="20px"
                                 id="TooltipExample"
-                                
+                                onClick={(param) => this.FlagFormClick(param)}
 															/>
 															<Tooltip
 																placement="right"
@@ -235,12 +237,8 @@ class CreateEmployee extends Component {
 														</div>
 													</div>
 													<div className="col-12 employee-content">
-														<div>
-															<ul className="list-group  rounded">
-                                <li className="list-group-item">
-                                  <p>this Employee stole $20</p>
-                                </li>
-                              </ul>
+														<div className="flagged-header">
+                              <h4>Pointless</h4>
 														</div>
 													</div>
 													<div className="col-6 employee-content" />
