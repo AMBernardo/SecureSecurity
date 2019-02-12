@@ -68,7 +68,7 @@ class SignUp extends Component {
       if(json.data.success) {
         setInStorage('the_main_app', {token: json.data.token})
         setInStorage('SecureSecruity', {UserToken: json.data.Usertoken})
-        window.location.assign('homepage/profile');
+        window.location.assign('/homepage/profile');
       } if (json.data) {
         this.setState({
           message: json.data.message,
