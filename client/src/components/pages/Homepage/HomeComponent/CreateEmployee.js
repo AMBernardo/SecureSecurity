@@ -35,27 +35,27 @@ class CreateEmployee extends Component {
 	componentDidMount() {
     //loads Employees from DB
     this.loadEmployees();
-		// const obj = getFromStorage('the_main_app');
-		// if (obj && obj.token) {
-		// 	const { token } = obj;
-		// 	//verify token
-		// 	fetch('/api/account/verify?token=' + token).then((res) => res.json()).then((json) => {
-		// 		if (json.success) {
-		// 			this.setState({
-		// 				token
-		// 			});
-		// 		}
-		// 	});
-		// } else {
-    //   //false entry renders a diffrent page if they were loged in 
-		// 	this.setState({
-		// 		falseEntry: true
-    //   });
-    //   //redirects them to the login page in 3sec
-		// 	setTimeout(() => {
-		// 		window.location.assign('/login');
-		// 	}, 3000);
-		// }
+		const obj = getFromStorage('the_main_app');
+		if (obj && obj.token) {
+			const { token } = obj;
+			//verify token
+			fetch('/api/account/verify?token=' + token).then((res) => res.json()).then((json) => {
+				if (json.success) {
+					this.setState({
+						token
+					});
+				}
+			});
+		} else {
+      //false entry renders a diffrent page if they were loged in 
+			this.setState({
+				falseEntry: true
+      });
+      //redirects them to the login page in 3sec
+			setTimeout(() => {
+				window.location.assign('/login');
+			}, 3000);
+		}
   }
   //LogOut Function to log the user out......
 	logout() {
