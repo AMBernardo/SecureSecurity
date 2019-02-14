@@ -7,7 +7,8 @@ const employeeSchema = new Schema({
   name: { type: String, required: true },
   dob: { type: String, required: true },
   gender: { type: String, required: true },
-  UserToken: {type: String}
+  UserToken: {type: String},
+  Reason: {type: String}
 
 });
 

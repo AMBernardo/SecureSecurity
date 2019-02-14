@@ -8,20 +8,23 @@ import FalseEntry  from './FalseEntry';
 import FlagForm  from './FlagForm';
 
 
+
 class CreateEmployee extends Component {
 	constructor(props) {
 		super(props);
 		this.toggle = this.toggle.bind(this);
 		this.state = {
 			tooltipOpen: false,
-			Employee: '',
+			Employee: [],
+			reason: '',
 			fullname: '',
 			dob: '',
 			gender: '',
 			token: '',
       falseEntry: false,
       FlagForm: false,
-      UserToken: ""
+			UserToken: "",
+			ID:''
 		};
 	}
 //For Tooltip For Flag......
@@ -83,17 +86,18 @@ class CreateEmployee extends Component {
     const TheUser = getFromStorage('SecureSecruity')
     
       const {UserToken} = TheUser
-      console.log(UserToken)
+      // console.log(UserToken)
     
     API.getEmployees(UserToken)
       .then((res) => {
-        console.log(res)
+				// console.log(res)
 				this.setState({
 					Employee: res.data,
 					fullname: '',
 					dob: '',
 					gender: '',
 				})
+				console.log(this.state.Employee)
       }
 			)
 			.catch((err) => console.log(err));
@@ -126,29 +130,38 @@ class CreateEmployee extends Component {
 	};
 //Broken need to fix
 	handleEmployeeDelete = (id) => {
-		API.deleteEmployee(id).then((res) => this.loadEmployees());
+		API.deleteEmployee(id)
+		.then((res) => this.loadEmployees())
+		.catch(err => console.log(err));
   };
-	FlagFormClick = () => {
+	FlagFormClick = id => {
     this.setState({
-      FlagForm: true
-    })
-    console.log(this.state.FlagForm)
+			FlagForm: true,
+			ID: id
+		})
+		console.log(id)
+		API.getEmployee(id)
+		.then(res => console.log(res.data))
+		.catch(err => console.log(err));
   }
-
+ 
 
   //render the whole page
 	render() {
+		const EmployeeIdData = this.state.ID
     if(this.state.FlagForm === true) {
 			return(
-				<FlagForm></FlagForm>
+				<FlagForm EmployeeIdData={EmployeeIdData} ></FlagForm>
 			)
     }
 
 
 		if (this.state.falseEntry === true) {
 			return (
-        //Renders Diffrent page if they are not logged in
-				<FalseEntry></FalseEntry>
+				//Renders Diffrent page if they are not logged in
+				<div>
+				<FalseEntry  />
+				</div>
 			);
     }
  
@@ -162,9 +175,9 @@ class CreateEmployee extends Component {
 							<h5 className="Find-employee-search border-bottom border-warning">FIND AN EMPLOYEE</h5>
 							<input
 								className="form-control Employee-name-control"
-								value={this.state.fullname}
+								value={this.state.fullName}
 								onChange={this.handleInputChange}
-								name="fullname"
+								name="fullName"
 								placeholder="First and Last "
 							/>
 							<input
@@ -224,7 +237,7 @@ class CreateEmployee extends Component {
 																className="Flag-icon"
 																width="20px"
                                 id="TooltipExample"
-                                onClick={(param) => this.FlagFormClick(param)}
+                                onClick={() => this.FlagFormClick(individual._id)}
 															/>
 															<Tooltip
 																placement="right"
@@ -238,7 +251,8 @@ class CreateEmployee extends Component {
 													</div>
 													<div className="col-12 employee-content">
 														<div className="flagged-header">
-                              <h4>Pointless</h4>
+                              <h5 className="yellow-text">Reason For Being Flagged</h5>
+                              <p>{individual.Reason}</p>
 														</div>
 													</div>
 													<div className="col-6 employee-content" />

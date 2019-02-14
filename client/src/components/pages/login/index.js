@@ -34,7 +34,7 @@ class SignUp extends Component {
               isLoading: false
             })
              window.location.reload();
-             window.location.assign('https://securesecurity.herokuapp.com/homepage/profile');
+             window.location.assign('/homepage/profile');
           } 
         })
     } else {
