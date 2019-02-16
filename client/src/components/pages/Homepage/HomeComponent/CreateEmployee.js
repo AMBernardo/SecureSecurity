@@ -226,7 +226,7 @@ class CreateEmployee extends Component {
 														</div>
 													</div>
 													<div className="col-4">
-														<h5 className="red-text">NO FLAGS</h5>
+												
 													</div>
 													<div className="col-2">
 														<div>

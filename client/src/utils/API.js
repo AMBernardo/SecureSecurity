@@ -6,7 +6,7 @@ export default {
     return axios.get(`/api/employee/ ${UserToken}`);
   },
   // Gets the book with the given id
-  getEmployee: function(id) {
+  getEmployee: function(id,name,dob) {
     return axios.get(`/api/employee/find/ ${id}`);
   },
   // Gets the book with the given id
