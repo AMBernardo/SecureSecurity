@@ -2,23 +2,20 @@ import React, { Component } from 'react';
 import API from '../../../../utils/API';
 import { getFromStorage, setInStorage } from '../../../../utils/storage';
 import './style.css';
-import SVGIcon from '../../../icons/flag.svg';
+import SVGIcon from '../../../icons/icons8-remove.svg';
 import { Tooltip } from 'reactstrap';
 import FalseEntry  from './FalseEntry';
 import FlagForm  from './FlagForm';
-import Deleteemployeepage  from './deleteEmplyee';
-import UpdateEmployer  from './updateEmployer';
+import CreateEmployee  from './CreateEmployee';
 
 
 
-class CreateEmployee extends Component {
+class deleteEmployee extends Component {
 	constructor(props) {
 		super(props);
-		this.toggle = this.toggle.bind(this);
 		this.state = {
 			tooltipOpen: false,
-			deleteEmployee: false,
-			EmployerChange: false,
+			deleteEmployee: true,
 			Employee: [],
 			reason: '',
 			fullname: '',
@@ -32,11 +29,7 @@ class CreateEmployee extends Component {
 		};
 	}
 //For Tooltip For Flag......
-	toggle() {
-		this.setState({
-			tooltipOpen: !this.state.tooltipOpen
-		});
-	}
+
   // When the component mounts, Loads Employees........ 
   //Verifies if they have a token and  if they dont it will redirect them out of the page...
 	componentDidMount() {
@@ -94,68 +87,40 @@ class CreateEmployee extends Component {
     
     API.getEmployees(UserToken)
       .then((res) => {
-				console.log(res.data)
+				// console.log(res)
 				this.setState({
 					Employee: res.data,
 					fullname: '',
 					dob: '',
 					gender: '',
 				})
+				console.log(this.state.Employee)
       }
 			)
 			.catch((err) => console.log(err));
 	};
-//For forms.......
-	handleInputChange = (event) => {
-		const { name, value } = event.target;
-		this.setState({
-			[name]: value
-		});
-	};
-//Saves Employee that was added
-	handleFormSubmit = (event) => {
-		event.preventDefault();
-    const TheUser = getFromStorage('SecureSecruity')
-    
-      const {UserToken} = TheUser
-      console.log(UserToken)
-      
-//API call to save the employee to the DB
-  console.log(UserToken)
-		API.saveEmployee({
-			name: this.state.fullname,
-			dob: this.state.dob,
-      gender: this.state.gender,
-      UserToken: UserToken
+
+  handleFormSubmit = (id) => {
+    // const id = this.EmployeeIdData
+    // console.log(this.EmployeeIdData)
+	API.updateEmplotee(id,{
+		UserToken: ''
+	})
+		.then((res) => {
+        this.componentDidMount()
+        console.log(res)
 		})
-			.then((res) => this.loadEmployees())
-			.catch((err) => console.log(err));
-	};
-	FlagFormClick = id => {
-    this.setState({
-			FlagForm: true,
-			ID: id
-		})
-		console.log(id)
-		API.getEmployee(id)
-		.then(res => console.log(res.data))
-		.catch(err => console.log(err));
-  }
-	deleteEmployeeRender =() => {
-	 this.setState({
-		 deleteEmployee: true
-	 })
-	 console.log(this.state.deleteEmployee)
-	}
-	ChangeEmployer =() => {
-	 this.setState({
-		EmployerChange: true
-	 })
-	}
+		.catch((err) => console.log(err));
+};
+ deleteEmployeeRender =() => {
+	this.setState({
+		deleteEmployee: false
+	})
+ }
+
   //render the whole page
 	render() {
 		const EmployeeIdData = this.state.ID
-		let FlagMessage;
     if(this.state.FlagForm === true) {
 			return(
 				<FlagForm EmployeeIdData={EmployeeIdData} ></FlagForm>
@@ -169,19 +134,10 @@ class CreateEmployee extends Component {
 				</div>
 			);
 		}
-		if(this.state.deleteEmployee ===true){
+		if(this.state.deleteEmployee ===false){
 			return(
-				<div>
-					<Deleteemployeepage></Deleteemployeepage>
-				</div>
-			)
-		}
-		if(this.state.EmployerChange ===true){
-			return(
-				<div>
-					<UpdateEmployer></UpdateEmployer>
-				</div>
-			)
+                <CreateEmployee></CreateEmployee>
+            )
 		}
 		return (
 			<div className="contanier">
@@ -229,17 +185,10 @@ class CreateEmployee extends Component {
 							<h5 className="Employee-Settings ">Employee Settings</h5>
 							<button
 								type="button"
-								className="btn btn-outline-danger btn-delete"
-								onClick={() => this.deleteEmployeeRender()}
+                                className="btn btn-outline-danger btn-delete"
+                                onClick={() => this.deleteEmployeeRender()}
 							>
-								Delete Employee
-							</button>
-							<button
-								type="button"
-								className="btn btn-outline-warning btn-delete"
-								onClick={() => this.ChangeEmployer()}
-							>
-								Add An Already exciting employee
+								Leave delete mode
 							</button>
 						</div>
 					</div>
@@ -248,12 +197,7 @@ class CreateEmployee extends Component {
 						<h2 className="employee-text">Employees</h2>
 						{this.state.Employee.length ? (
 							<div>
-								
 								{this.state.Employee.map((individual) => {
-									{if(individual.Reason){
-										console.log(individual.Reason)
-										
-									}}
 									return (
 										<div className="card Employee-cards" key={individual._id}>
 											<div className="card-body">
@@ -271,25 +215,17 @@ class CreateEmployee extends Component {
                             
 															<img
 																src={SVGIcon}
-																alt="Flag"
+																alt="trash"
 																className="Flag-icon"
-																width="20px"
-                                id="TooltipExample"
-                                onClick={() => this.FlagFormClick(individual._id)}
+                                                                width="20px"
+                                                                onClick={() => this.handleFormSubmit(individual._id)}
 															/>
-															<Tooltip
-																placement="right"
-																isOpen={this.state.tooltipOpen}
-																target="TooltipExample"
-																toggle={this.toggle}
-															>
-																Red Flag This Employee.
-															</Tooltip>
+															
 														</div>
 													</div>
 													<div className="col-12 employee-content">
 														<div className="flagged-header">
-														<h5 className="yellow-text">Reason For Being Flagged</h5>
+                              <h5 className="yellow-text">Reason For Being Flagged</h5>
                               <p>{individual.Reason}</p>
 														</div>
 													</div>
@@ -304,51 +240,10 @@ class CreateEmployee extends Component {
 							<h3>Add Your Employees</h3>
 						)}
 					</div>
-					<div className="col-3 add-employee shadow-lg p-3 mb-5 ">
-						<h3 className="employee-header yellow-text">Add A Employee</h3>
-						<div className="form-group add-employee-form">
-							<input
-								className="form-control name-control"
-								value={this.state.fullname}
-								onChange={this.handleInputChange}
-								name="fullname"
-								placeholder="First and Last "
-							/>
-							<div className="form-group">
-								<select
-									className="form-control name-control"
-									value={this.state.gender}
-									onChange={this.handleInputChange}
-									name="gender"
-									placeholder="Date of birth"
-								>
-									<option>Male</option>
-									<option>Female</option>
-									<option>Other</option>
-								</select>
-							</div>
-							<input
-								className="form-control name-control"
-								value={this.state.dob}
-								onChange={this.handleInputChange}
-								name="dob"
-								placeholder="Date of Birth"
-							/>
-							<button
-								type="button"
-								className="btn btn-outline-warning "
-								onClick={this.handleFormSubmit}
-								disabled={!(this.state.fullname && this.state.dob && this.state.gender)}
-							>
-								Submit
-							</button>
-						</div>
-					</div>
-					<div className="col-4 Employee-Searched-Card" />
 				</div>
 			</div>
 		);
 	}
 }
 
-export default CreateEmployee;
+export default deleteEmployee;

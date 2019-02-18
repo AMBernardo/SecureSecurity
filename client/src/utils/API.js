@@ -1,9 +1,13 @@
 import axios from "axios";
 
 export default {
-  // Gets all books
+  // Gets Employees for each user
   getEmployees: function(UserToken) {
     return axios.get(`/api/employee/ ${UserToken}`);
+  },
+  // Gets Employee to update new employer
+  getEmployeeForupdate: function(employeeData) {
+    return axios.get("/api/employee" , employeeData);
   },
   // Gets the book with the given id
   getEmployee: function(id,name,dob) {
@@ -17,9 +21,11 @@ export default {
   deleteEmployee: function(id, employeeData) {
     return axios.delete("/api/employee/" + id , employeeData);
   },
-  // Saves a book to the database
   saveEmployee: function(employeeData) {
     return axios.post("/api/employee", employeeData);
+  },
+  saveUser: function(employeeData) {
+    return axios.post("/api/account/signup", employeeData);
   },
   saveUser: function(employeeData) {
     return axios.post("/api/account/signup", employeeData);

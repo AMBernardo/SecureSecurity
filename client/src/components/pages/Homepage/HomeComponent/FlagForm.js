@@ -94,6 +94,8 @@ handleFormSubmit = (event) => {
 				<div className="row">
 					<div className="col-2 side-col">
 						<h4 className="brand border-bottom border-warning">Secure Security</h4>
+						<button className="btn btn-warning go-back-btn " onClick={() =>  this.setState({FlagForm: false}) }>Go Back</button>
+          
 				</div>
 			
           <div className="col-6 flag-form">
@@ -105,8 +107,9 @@ handleFormSubmit = (event) => {
                 placeholder="Reason "
 							/>
 
-          <button className="btn btn-warning go-back-btn " onClick={() => this.handleFormSubmit() > this.setState({modal: true}) }>SUBMIT</button>
+          <button className="btn btn-warning submit-btn " onClick={() => this.handleFormSubmit() > this.setState({modal: true}) }>SUBMIT</button>
           
+        
           </div>
 			</div>
       </div>

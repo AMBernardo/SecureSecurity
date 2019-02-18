@@ -31,6 +31,25 @@
     margin-left: .5rem;
     width: 210px;
 }
+.btn3-3{
+    margin-top: -20rem;
+    margin-left: .5rem;
+    width: 210px;
+}
+.Employee-Settings{
+    margin-left: 1.3rem;
+   margin-bottom: -.8rem;
+}
+.btn-delete{
+    margin-top: 1rem;
+    margin-left: .5rem;
+    width: 210px;
+}
+.btn-delete-2{
+    margin-top: 23rem;
+    margin-left: .5rem;
+    width: 210px;
+}
 .button-bundle{
     margin-top: 13rem;
 }
@@ -93,8 +112,13 @@ body{
 .flag-reason-form{
     margin-top: -10rem;
 }
-.go-back-btn{
+.submit-btn {
     margin-top: 1rem;
+}
+.go-back-btn{
+    margin-top: .8rem;
+    margin-left: .5rem;
+    width: 210px;
 }
 .flag-form-header{
     height: 40px;
@@ -123,7 +147,16 @@ body{
     margin-left: 10rem;
     height: 285px;
 }
+.add-employer{
+    background-color: #2b3159;
+    margin-top: 10rem;
+    margin-left: 15rem;
+    height: 325px;
+}
 .add-employee:hover{
+    transform: scale(1.1);
+}
+.add-employer:hover{
     transform: scale(1.1);
 }
 .add-employee-form{
@@ -151,9 +184,6 @@ body{
 }
 .form-control{
     margin-top: .5rem;
-}
-.form-control:hover{
-
 }
 .Employee-Searched-Card{
     margin-left: 53rem;

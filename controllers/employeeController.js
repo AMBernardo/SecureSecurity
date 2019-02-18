@@ -13,6 +13,17 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  findForEmployerChange: function(req, res) {
+    console.log(req.body)
+    employee   
+      .find( {
+        // $and : [
+        //   {name: req.body.name}, {dob: req.body.dob}, {gender: req.body.gender}
+        // ]
+      })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   findById: function(req, res) {
     let x = req.params.id
     let y = x.split(" ")[1]
@@ -23,7 +34,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    console.log(req.body)
+    console.log("this is not the one" +req.body)
     employee
       .create(req.body)
       .then(dbModel => res.json(dbModel))
