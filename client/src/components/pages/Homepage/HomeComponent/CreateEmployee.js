@@ -6,6 +6,7 @@ import SVGIcon from '../../../icons/flag.svg';
 import { Tooltip } from 'reactstrap';
 import FalseEntry  from './FalseEntry';
 import FlagForm  from './FlagForm';
+import FindEmployee2  from './FindEmployee2';
 
 
 
@@ -171,7 +172,8 @@ class CreateEmployee extends Component {
 				<div className="row">
 					<div className="col-2 side-col">
 						<h4 className="brand border-bottom border-warning">Secure Security</h4>
-						<div className="form-group Employee-Search">
+						<FindEmployee2/>
+						{/* <div className="form-group Employee-Search">
 							<h5 className="Find-employee-search border-bottom border-warning">FIND AN EMPLOYEE</h5>
 							<input
 								className="form-control Employee-name-control"
@@ -199,7 +201,7 @@ class CreateEmployee extends Component {
 								{' '}
 								Submit
 							</button>
-						</div>
+						</div> */}
 						<div className="button-bundle">
 							<button
 								type="button"

@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const employeeRoutes = require("./employees");
 const FindEmployee = require("./findEmployee");
+const findOneEmp = require("./findOneEmp");
 const signupRoutes = require("./signin");
 const signinRoutes = require("./signinReal");
 const verify = require("./verify");
@@ -12,6 +13,8 @@ const verify = require("./verify");
 router.use("/employee", employeeRoutes);
 
 router.use("/employee/find", FindEmployee);
+
+router.use("/employee", findOneEmp);
 
 router.use("/account/signup", signupRoutes);
 

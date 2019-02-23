@@ -44,6 +44,31 @@ module.exports = {
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-  }
+  },
+  findAll: function(req, res) {
+    const employeeList = [];
+    employee
+      .find(req.query)
+      
+      .then(dbModel => {
+        //get all names and insert to employeeList array
+        dbModel.forEach( (employee) => {
+          employeeList.push(employee.name)
+        })
+
+        // respond all name of users
+        res.json(employeeList)
+        
+      })
+      .catch(err => res.status(422).json(err));
+  },
+  findByName: function(req, res) {
+    // let z = req.params
+
+    employee   
+      .find(req.body.name)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
  
 };

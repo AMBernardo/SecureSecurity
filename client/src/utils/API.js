@@ -27,6 +27,12 @@ export default {
   signIN: function(employeeData) {
     return axios.post("/api/account/signin", employeeData);
   },
+  getAllEmployees: function(){
+    return axios.get("/api/employee")
+  },
+  getOneEmployee: function(){
+    return axios.get(`/api/employee/findOneEmp`);
+  }
 
   
 };
